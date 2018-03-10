@@ -11,7 +11,7 @@ defmodule Xpar.Application do
     children = [
       # Start the endpoint when the application starts
       supervisor(XparWeb.Endpoint, []),
-      # worker(Xpar.Server.TeamServer, [Xpar.Server.TeamServer])
+       worker(Xpar.Server.TeamServer, [])
       # Start your own worker by calling: Xpar.Worker.start_link(arg1, arg2, arg3)
       # worker(Xpar.Worker, [arg1, arg2, arg3]),
     ]

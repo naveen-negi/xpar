@@ -1,16 +1,23 @@
-# defmodule Xpar.Server.TeamServer do
-#   use Agent 
+defmodule Xpar.Server.TeamServer do
+  use GenServer
 
-#   def start_link(state) do
-#     Agent.start_link(fn -> state end, name: __MODULE__)
-#   end
+  def start_link() do
+    GenServer.start_link(__MODULE__, [], name: TeamServer)
+  end
 
-  # def add_member(member_list) do
-  #   Agent.update(__MODULE__, fn state -> [member_list ++ state] end)
-  # end
+  def add_member(members) do
+    GenServer.cast(TeamServer, {:add_members, members})
+  end
 
-  # def get_members() do
-  #   Agent.get(__MODULE__, fn state -> state end)
-  # end
+  def get_members() do
+    GenServer.call(TeamServer, {:get_members})
+  end
 
-# end
+  def handle_call({:get_members},pid, state) do
+    {:reply,state, state}
+  end
+
+  def handle_cast({:add_members, members}, state) do
+    {:noreply, members}
+  end
+end
