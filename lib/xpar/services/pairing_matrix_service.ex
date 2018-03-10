@@ -12,9 +12,9 @@ defmodule Xpar.PairingMatrixService do
   end
 
   defp get_pair({:ok, commit_message}, members) do
-    pair_list = Enum.filter(members, fn name -> String.contains?( commit_message , name)  end)
-    IO.inspect pair_list
-    Pair.new(pair_list)
+    String.split(commit_message, [" ", "/"])
+    |> Enum.filter(&Enum.member?(members, &1))
+    |> Pair.new
   end
 
 end
