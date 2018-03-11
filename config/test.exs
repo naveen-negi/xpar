@@ -8,4 +8,4 @@ config :xpar, XparWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
-cofig :xpar, :bit_bucket_client, Xpar.Gateways.BitBucketClient
+config :xpar, :storage_file_name, :test_storage

@@ -1,4 +1,4 @@
-defmodule Xpar.PairingMatrixService do
+defmodule Xpar.Services.PairingMatrixService do
   alias Xpar.Client.BitBucket
   alias Xpar.Server.TeamServer
   alias Xpar.Pairing.Pair
