@@ -15,16 +15,15 @@ defmodule Xpar.TeamsControllerTest do
 
   test "should persist team info across calls", %{conn: conn} do
     id = "ichigo"
-    team = %{id: id, repos: ["pairing-demo1", "pairing-demo2"]}
+    team = %{"id" =>  id, "repos" => ["pairing-demo1", "pairing-demo2"]}
 
     conn |> post("/api/teams/#{id}/repos", team)
 
       response = conn
       |> get("/api/teams/#{id}/repos")
+      |> json_response(200)
 
-      IO.puts "printing conn"
-    IO.inspect response
-     assert conn.status == 200
+     assert response == team
   end
 
 end
