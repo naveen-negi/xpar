@@ -39,7 +39,8 @@ defmodule Xpar.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       # {:tentacat, "~> 0.8.0"},
-      {:httpoison, "~> 1.0"}
+      {:httpoison, "~> 1.0"},
+      {:mock, "~> 0.3.0", only: :test}
     ]
   end
 end

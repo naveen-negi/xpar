@@ -22,7 +22,7 @@ defmodule XparWeb.Router do
   # Other scopes may use custom stacks.
   scope "/api", XparWeb do
     pipe_through :api
-    get "/pairing-matrix", PairController, :get
+    get "teams/:id/pairing-matrix", PairController, :get
     get "/teams/:id/repos", TeamsController, :get
     post "/teams/:id/repos", TeamsController, :create
   end
