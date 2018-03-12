@@ -6,6 +6,7 @@ defmodule Xpar.Teams do
     :dets.insert_new(table, {team.id, team})
   end
 
+  @spec get(id:: String.t) :: Team.t
   def get(id) do
     :dets.lookup(@storage_file, id)
   end
