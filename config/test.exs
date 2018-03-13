@@ -8,4 +8,5 @@ config :xpar, XparWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
-config :xpar, :storage_file_name, :test_storage
+config :xpar, :repo_storage_file_name, :repo_test_storage
+config :xpar, :members_storage_file_name, :members_test_storage

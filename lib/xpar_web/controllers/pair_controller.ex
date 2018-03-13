@@ -7,7 +7,7 @@ defmodule XparWeb.PairController do
 
   def get(conn, _params) do
     id = conn.params["id"]
-    matrix = PairingMatrixService.get_pairing_matrix
+    matrix = PairingMatrixService.get_pairing_matrix(id)
     conn
     |> put_resp_content_type("application/json")
     |> put_status(200)

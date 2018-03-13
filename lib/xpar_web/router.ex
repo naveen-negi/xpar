@@ -23,7 +23,9 @@ defmodule XparWeb.Router do
   scope "/api", XparWeb do
     pipe_through :api
     get "teams/:id/pairing-matrix", PairController, :get
-    get "/teams/:id/repos", TeamsController, :get
-    post "/teams/:id/repos", TeamsController, :create
+    get "/teams/:id/repos", TeamsController, :get_repos
+    post "/teams/:id/repos", TeamsController, :create_repos
+    get "/teams/:id/members", TeamsController, :get_members
+    post "/teams/:id/members", TeamsController, :create_members
   end
 end

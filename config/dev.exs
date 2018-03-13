@@ -47,4 +47,5 @@ config :logger, :console, format: "[$level] $message\n"
 # Set a higher stacktrace during development. Avoid configuring such
 # in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20
-config :xpar, :storage_file_name, :disk_storage
+config :xpar, :repo_storage_file_name, :repo_storage
+config :xpar, :members_storage_file_name, :members_storage

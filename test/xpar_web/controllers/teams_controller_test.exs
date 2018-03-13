@@ -13,7 +13,17 @@ defmodule Xpar.TeamsControllerTest do
     assert response.status == 204
   end
 
-  test "should persist team info across calls", %{conn: conn} do
+  test "should return 204 for members creation", %{conn: conn} do
+    id = "ichigo"
+    team = %{"id" =>  id, "members" => ["naveen1", "naveen2"]}
+
+    response =
+    conn
+    |> post("/api/teams/#{id}/members", team)
+    assert response.status == 204
+  end
+
+  test "should persist repositories info across calls", %{conn: conn} do
     id = "ichigo"
     team = %{"id" =>  id, "repos" => ["pairing-demo1", "pairing-demo2"]}
 
@@ -24,6 +34,19 @@ defmodule Xpar.TeamsControllerTest do
       |> json_response(200)
 
      assert response == team
+  end
+
+  test "should persist team member info accross calls", %{conn: conn} do
+    id = "ichigo"
+    team = %{"id" =>  id, "members" => ["naveen1", "naveen2"]}
+
+    conn |> post("/api/teams/#{id}/members", team)
+
+    response = conn
+    |> get("/api/teams/#{id}/members")
+    |> json_response(200)
+
+    assert response == team
   end
 
 end
