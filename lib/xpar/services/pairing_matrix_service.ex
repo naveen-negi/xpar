@@ -10,15 +10,15 @@ defmodule Xpar.Services.PairingMatrixService do
   def get_pairing_matrix(id) do
   %Repos{id: id, repos: repos} = @team_server.get_repos(id)
   %Members{id: _, members: members} = @team_server.get_members(id)
-
-  pairs =
+  matrix_new = Matrix.new
+  matrix =
     repos
-    |> Enum.map(fn repo ->  get_pairing_matrix_for(id, repo, members) end)
-    |> Enum.reduce(Matrix.new, fn (pair, acc) -> Matrix.add_pair(acc, pair) end)
-
+    |> Enum.flat_map(fn repo ->  get_pairs_for(id, repo, members) end)
+    |> Enum.reduce(matrix_new, fn (pair, acc) -> Matrix.add_pair(acc, pair) end)
+    Matrix.process_pairs(matrix)
   end
 
-  defp get_pairing_matrix_for(id, repo, members) do
+  defp get_pairs_for(id, repo, members) do
     @bitbucket_client.get_commit_messages(id, repo)
     |> Enum.map(fn message -> get_pair(message, members) end)
     |> Enum.filter(fn pair -> !is_nil(pair) end)

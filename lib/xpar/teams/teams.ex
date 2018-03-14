@@ -4,7 +4,7 @@ defmodule Xpar.Teams do
 
   def add_repos(team) do
     {:ok, table} = :dets.open_file(@repo_storage_file, [type: :set])
-    :dets.insert_new(table, {team.id, team})
+    :dets.insert(table, {team.id, team})
   end
 
   def get_repos(id) do
@@ -14,7 +14,7 @@ defmodule Xpar.Teams do
 
   def add_members(team) do
     {:ok, table} = :dets.open_file(@members_storage_file, [type: :set])
-    :dets.insert_new(table, {team.id, team})
+    :dets.insert(table, {team.id, team})
   end
 
   def get_members(id) do

@@ -9,15 +9,16 @@ defmodule Xpar.Pairing.Matrix do
   end
 
   def add_pair(matrix, pairs) do
-    %Xpar.Pairing.Matrix{matrix | pairs: [pairs | matrix.pairs]}
+    result = [pairs | matrix.pairs]
+    %Xpar.Pairing.Matrix{matrix | pairs: result}
   end
 
   def process_pairs(matrix) do
     pair_lookup = Enum.group_by(matrix.pairs, fn x -> x end)
     total_days = length(matrix.pairs)
-
-     Map.keys(pair_lookup)
-     |> Enum.map(fn pair -> get_stats_for(pair_lookup, pair, total_days) end )
+    result = Map.keys(pair_lookup)
+    |> Enum.map(fn pair -> get_stats_for(pair_lookup, pair, total_days) end )
+     result
   end
 
   defp get_stats_for(lookup, pair, total_pair_days) do

@@ -6,6 +6,7 @@ defmodule Xpar.Teams.Members do
     %Xpar.Teams.Members{id: id, members: []}
   end
   def add(team, members) do
+    IO.inspect members
     %Xpar.Teams.Members{team | members: members }
   end
 end

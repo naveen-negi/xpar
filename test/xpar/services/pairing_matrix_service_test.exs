@@ -25,10 +25,12 @@ defmodule Xpar.Services.PairMatrixServiceTest do
         Matrix.new
       |> Matrix.add_pair(%Pair{first: "naveen1", second: "naveen2"})
       |> Matrix.add_pair(%Pair{first: "naveen1", second: "naveen2"})
+      |> Matrix.add_pair(%Pair{first: "naveen1", second: "naveen2"})
+      |> Matrix.add_pair(%Pair{first: "naveen1", second: "naveen2"})
 
       matrix = PairingMatrixService.get_pairing_matrix(id)
       IO.inspect matrix
-      assert matrix == expected
+      assert matrix == Matrix.process_pairs(expected)
     end
   end
 end
