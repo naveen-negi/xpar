@@ -24,8 +24,8 @@ defmodule Xpar.Services.PairingMatrixService do
     |> Enum.filter(fn pair -> !is_nil(pair) end)
   end
 
-  defp get_pair({:ok, commit_message}, members) do
-    String.split(commit_message, [" ", "/"])
+  def get_pair({:ok, commit_message}, members) do
+    String.split(commit_message, [" ", "/", "\n"])
     |> Enum.filter(&Enum.member?(members, &1))
     |> Pair.new
   end

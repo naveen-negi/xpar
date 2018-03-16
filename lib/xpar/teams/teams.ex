@@ -8,6 +8,7 @@ defmodule Xpar.Teams do
   end
 
   def get_repos(id) do
+    {:ok, table} = :dets.open_file(@repo_storage_file, [type: :set])
       [head | _] = :dets.lookup(@repo_storage_file, id)
       elem(head, 1)
   end
@@ -18,6 +19,7 @@ defmodule Xpar.Teams do
   end
 
   def get_members(id) do
+    {:ok, table} = :dets.open_file(@members_storage_file, [type: :set])
     [head | _] = :dets.lookup(@members_storage_file, id)
     elem(head, 1)
   end
