@@ -13,11 +13,11 @@ defmodule XparWeb.Router do
     plug :accepts, ["json"]
   end
 
-  # scope "/", XparWeb do
-  #   pipe_through :browser # Use the default browser stack
+   scope "/", XparWeb do
+     pipe_through :browser # Use the default browser stack
 
-    # get "/", PageController, :index
-  # end
+     get "/", StatController, :show
+   end
 
   # Other scopes may use custom stacks.
   scope "/api", XparWeb do

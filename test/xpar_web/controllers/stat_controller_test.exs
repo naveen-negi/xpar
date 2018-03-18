@@ -1,14 +1,14 @@
 defmodule XparWeb.StatControllerTest do
   use XparWeb.ConnCase
 
-  alias Xpar.Stats
+  alias Xpar.Team
 
   @create_attrs %{}
   @update_attrs %{}
   @invalid_attrs %{}
 
   def fixture(:stat) do
-    {:ok, stat} = Stats.create_stat(@create_attrs)
+    {:ok, stat} = Team.create_stat(@create_attrs)
     stat
   end
 
