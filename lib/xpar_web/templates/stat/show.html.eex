@@ -1,6 +1,5 @@
-<h2>Show Stat</h2>
-
-<ul>
-
-</ul>
-
+<%= for item <- pairs(@conn) do %>
+  <td><%=  item.pair.first %></td>
+  <td><%=  item.pair.second %></td>
+  <td><%=  item.days_paired %></td>
+<% end %>

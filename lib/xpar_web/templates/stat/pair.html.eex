@@ -1,0 +1,1 @@
+<h2><%= @pair.days_paired %><h2>
