@@ -3,6 +3,7 @@ defmodule XparWeb.StatView do
 
   def pairs(conn) do
       stats = conn.assigns[:stats]
+      IO.inspect stats
       stats
   end
 end
