@@ -8,7 +8,11 @@ will try to look for these names in commit message.
 2) http://localhost:4000/api/teams/:team_id/repos : this endpoint is used to configure all of the repositories from which commit messages are to be read for a given team.
 3) http://localhost:4000/api/teams/knav/pairing-matrix : this endpoint is used to retrieve pairing information for above configured team members and repositories.
 
-I have added sample project in bitbucket named as "pairing-demo", you can play around with application by providing following data:
+
+Example:
+I have added sample project in bitbucket named as "pairing-demo" for user "knav", you can play around with application by providing following data:
+
+Add team members:
 
 POST http://localhost:4000/api/teams/knav/members
 BODY: 
@@ -17,14 +21,53 @@ BODY:
       "members": ["naveen","naveen1","naveen2","naveen3", "naveen4","rin", "alex"]
      }
      
+Add Repositores to watch for commits
+
 POST: http://localhost:4000/api/teams/knav/repos
 {
 "id": "knav",
 "repos": ["pairing-demo"]
 }
 
+Get pairing matrix
 GET: http://localhost:4000/api/teams/knav/pairing-matrix
 Response: 
+[
+    {
+        "percent": 20,
+        "pair": {
+            "second": "naveen2",
+            "first": "naveen"
+        },
+        "days_paired": 1
+    },
+    {
+        "percent": 40,
+        "pair": {
+            "second": "naveen3",
+            "first": "naveen1"
+        },
+        "days_paired": 2
+    },
+    {
+        "percent": 20,
+        "pair": {
+            "second": "naveen4",
+            "first": "naveen3"
+        },
+        "days_paired": 1
+    },
+    {
+        "percent": 20,
+        "pair": {
+            "second": "alex",
+            "first": "rin"
+        },
+        "days_paired": 1
+    }
+]
+
+You can also view Paring matrix after starting application, currently  and then go to http://localhost4000/ in  your browser. Currently home page is naivly designed and needs further (a lot) improvement.
 
 To start your Phoenix server:
 
