@@ -3,5 +3,5 @@
     <%= render "pair.html", stat: stat %>
 <% end %>
 <script>
-Draggable.create(".box", {type:"x,y", edgeResistance:0.65, bounds:"#container", throwProps:true});
+    require("js/app".App.draw_rect());
 </script>

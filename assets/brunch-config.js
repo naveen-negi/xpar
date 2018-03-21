@@ -60,7 +60,8 @@ exports.config = {
       enabled: true,
       globals: {
           $: 'jquery',
-          jquery: 'jquery'
+          jQuery: 'jquery',
+          gsap: 'gsap'
       }
   }
 };
