@@ -18,7 +18,7 @@ import "gsap"
 import { CreateChart } from './demo.js';
 
 export const App = {
-    draw_rect: createChart.draw
+    draw_rect: CreateChart.draw
 };
 // Import local files
 //
