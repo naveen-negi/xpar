@@ -12,7 +12,14 @@
 // If you no longer want to use a dependency, remember
 // to also remove its path from "config.paths.watched".
 import "phoenix_html"
+import "jquery"
+import "gsap"
 
+import { CreateChart } from './demo.js';
+
+export const App = {
+    draw_rect: CreateChart.draw
+};
 // Import local files
 //
 // Local files can be imported directly using relative

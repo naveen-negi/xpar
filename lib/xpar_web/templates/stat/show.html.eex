@@ -1,4 +1,7 @@
-<title>Pairing Matrix</title>
-<%= for stat <- pairs(@conn) do %>
-    <%= render "pair.html", stat: stat %>
-<% end %>
+<!-- <title>Pairing Matrix</title> -->
+<%#= for stat <- pairs(@conn) do %>
+    <%#= render "pair.html", stat: stat %>
+<%# end %>
+<script>
+    require("js/app").App.draw_rect();
+</script>
