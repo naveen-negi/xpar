@@ -1,5 +1,0 @@
-<h2>Edit Stat</h2>
-
-<%= render "form.html", Map.put(assigns, :action, stat_path(@conn, :update, @stat)) %>
-
-<span><%= link "Back", to: stat_path(@conn, :index) %></span>

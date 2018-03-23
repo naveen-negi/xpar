@@ -14,20 +14,35 @@ defmodule Xpar.Pairing.Matrix do
   end
 
   def process_pairs(matrix) do
-    pair_lookup = Enum.group_by(matrix.pairs, fn x -> x end)
-    total_days = length(matrix.pairs)
+    pair_lookup = Enum.group_by(matrix.pairs, fn x -> distinct_by(x.first, x.second) end)
+    total_days = length(Enum.uniq(matrix.pairs))
     result = Map.keys(pair_lookup)
     |> Enum.map(fn pair -> get_stats_for(pair_lookup, pair, total_days) end )
      result
   end
 
   defp get_stats_for(lookup, pair, total_pair_days) do
-    days_paired = days_paired(lookup, pair)
+    pairs = Map.fetch!(lookup, pair)
+    [pair | _ ] = pairs
+    days_paired = length(Enum.uniq_by(pairs, fn pair -> pair.timestamp end))
     paired_percentage = get_paired_percentage(total_pair_days, days_paired)
 
-    %Stats{ pair: pair,
+    %Stats{ first_pair: pair.first,
+            second_pair: pair.second,
             days_paired: days_paired,
            percent: paired_percentage}
+  end
+
+  defp distinct_by(first, second) when is_nil(second) do
+    first
+  end
+
+  defp distinct_by(first, second) when is_nil(first) do
+    first
+  end
+
+  defp distinct_by(first, second) do
+    first <> second
   end
 
   defp get_paired_percentage(total_days, number_of_paired) do

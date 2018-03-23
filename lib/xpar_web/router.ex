@@ -16,7 +16,7 @@ defmodule XparWeb.Router do
    scope "/", XparWeb do
      pipe_through :browser # Use the default browser stack
 
-     get "/", StatController, :show
+     get "/teams/:id", StatController, :show
    end
 
   # Other scopes may use custom stacks.

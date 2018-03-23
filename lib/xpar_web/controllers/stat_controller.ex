@@ -3,7 +3,8 @@ defmodule XparWeb.StatController do
   alias Xpar.Services.PairingMatrixService
 
   def show(conn, _params) do
-     pairs = PairingMatrixService.get_pairing_matrix("knav")
+    team = conn.params["id"]
+     pairs = PairingMatrixService.get_pairing_matrix(team)
     render conn, "show.html",
       stats: pairs
   end 
