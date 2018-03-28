@@ -2,16 +2,10 @@ defmodule Xpar.Client.BitBucket do
   @bitbucket_url Application.get_env(:xpar, :base_url)
 
   def get_commit_messages(team, repo_name) do
-    commit_messages =
-    get_all_projects_for(team)
-    |> Enum.map(fn result -> get_messages(team, result.repo_name, 0, []) end)
-    IO.puts "*******************************************"
-    IO.inspect "done with fetching commit messages" 
-    IO.puts "*******************************************"
-    commit_messages
+    get_messages(team, repo_name, 0, [])
   end
 
-  defp get_messages(team, repo_name, start, commit_messages) when start > 30 do
+  defp get_messages(team, repo_name, start, commit_messages) when start > 100 do
     commit_messages
   end
 
@@ -21,7 +15,7 @@ defmodule Xpar.Client.BitBucket do
     pagination_result = get_pagination_result(body)
     commit_messages = commit_messages ++ get_commit_messages_from_response(body)
     IO.puts "*******************************************"
-    IO.inspect commit_messages
+    IO.inspect  commit_messages
     IO.puts "*******************************************"
     get_messages(team, repo_name, pagination_result.next_page_start, commit_messages)
   end
