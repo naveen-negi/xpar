@@ -28,6 +28,7 @@ defmodule Xpar.Services.PairingMatrixService do
 
   def get_pair(commit_message,timestamp, members) do
     String.split(commit_message, [" ", "/", "\n"])
+    |> Enum.map(&String.downcase(&1))
     |> Enum.filter(&Enum.member?(members, String.downcase(&1)))
     |> Enum.sort
     |> Pair.new(timestamp)
