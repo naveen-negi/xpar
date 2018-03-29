@@ -20,7 +20,6 @@ defmodule XparWeb.Endpoint do
   end
 
   plug Plug.Logger
-
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
@@ -28,7 +27,7 @@ defmodule XparWeb.Endpoint do
 
   plug Plug.MethodOverride
   plug Plug.Head
-
+  plug Corsica, max_age: 600, origins: "*", expose_headers: ~w(X-Foo)
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
@@ -54,3 +53,4 @@ defmodule XparWeb.Endpoint do
     end
   end
 end
+

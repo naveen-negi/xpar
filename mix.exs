@@ -19,7 +19,7 @@ defmodule Xpar.Mixfile do
   def application do
     [
       mod: {Xpar.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :corsica]
     ]
   end
 
@@ -40,7 +40,8 @@ defmodule Xpar.Mixfile do
       {:cowboy, "~> 1.0"},
       # {:tentacat, "~> 0.8.0"},
       {:httpoison, "~> 1.0"},
-      {:mock, "~> 0.3.0", only: :test}
+      {:mock, "~> 0.3.0", only: :test},
+      {:corsica, "~> 1.0"}
     ]
   end
 end
