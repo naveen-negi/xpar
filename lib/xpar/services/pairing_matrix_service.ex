@@ -3,6 +3,7 @@ defmodule Xpar.Services.PairingMatrixService do
   alias Xpar.Server.TeamServer
   alias Xpar.Pairing.{ Pair, Matrix }
   alias Xpar.Teams.{Repos, Members}
+  alias Xpar.Teams
 
   @team_server  Xpar.Teams
   @bitbucket_client Xpar.Client.BitBucket
@@ -12,16 +13,33 @@ defmodule Xpar.Services.PairingMatrixService do
     repos =
     id
     |> @bitbucket_client.get_all_projects_for
-   |> Enum.map(fn result -> result.repo_name end)
+    |> Enum.map(fn result -> result.repo_name end)
 
   %Members{id: _, members: members} = @team_server.get_members(id)
+  Teams.add_repos(%Repos{id: id, repos: repos} )
 
-  matrix_new = Matrix.new
-  matrix =
-    repos
-    |> Enum.flat_map(fn repo ->  get_pairs_for(id, repo, members) end)
-    |> Enum.reduce(matrix_new, fn (pair, acc) -> Matrix.add_pair(acc, pair) end)
+  # matrix_new = Matrix.new
+  # matrix =
+  #   repos
+  #   |> Enum.flat_map(fn repo ->  get_pairs_for(id, repo, members) end)
+  #   |> Enum.reduce(matrix_new, fn (pair, acc) -> Matrix.add_pair(acc, pair) end)
+
+  #    Matrix.process_pairs(matrix)
+
+  result =
+  repos
+  |> Enum.map(&Task.async(fn -> get_pairs_for(id, &1, members) end))
+  |> Enum.flat_map(&Task.await/1)
+  
+  IO.inspect result
+
+    matrix =
+      result
+      |> Enum.reduce(Matrix.new, fn (pair, acc) -> Matrix.add_pair(acc, pair) end)
+
+    IO.inspect matrix
     Matrix.process_pairs(matrix)
+
   end
 
   defp get_pairs_for(id, repo, members) do
