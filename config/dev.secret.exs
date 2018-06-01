@@ -14,5 +14,3 @@ config :xpar, XparWeb.Endpoint,
 
 config :xpar, base_url: "https://FBAM39Q:2Y8CHa,zb7@devstack.vwgroup.com/bitbucket/rest/api/1.0/projects"
 
-config :xpar, MyApp.Endpoint,
-  http: [port: System.get_env("PORT") || 8080]
