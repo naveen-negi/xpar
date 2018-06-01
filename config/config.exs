@@ -8,10 +8,8 @@ use Mix.Config
 # Configures the endpoint
 config :xpar, XparWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "d8FMRbhvGgvkXyc7C7HktAdnK0oCmAc1BGoFoYsmoLi6AzVWpJmmlfUsP+yk5gK2",
-  render_errors: [view: XparWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Xpar.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+  secret_key_base: "d8FMRbhvGgvkXyc7C7HktAdnK0oCmAc1BGoFoYsmoLi6AzVWpJmmlfUsP+yk5gK2"
+  # render_errors: [view: XparWeb.ErrorView, accepts: ~w(html json)],
 
 # Configures Elixir's Logger
 config :logger, :console,

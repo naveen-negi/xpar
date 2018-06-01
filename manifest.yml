@@ -1,0 +1,7 @@
+applications:
+  - name: xpar-app
+    host: xpar 
+    instances: 1
+    memory: 1G
+    buildpack: https://github.com/HashNuke/heroku-buildpack-elixir.git
+    command: elixir --name app$CF_INSTANCE_INDEX@$CF_INSTANCE_INTERNAL_IP -S mix run --no-halt

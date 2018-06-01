@@ -22,24 +22,6 @@ defmodule XparWeb do
       use Phoenix.Controller, namespace: XparWeb
       import Plug.Conn
       import XparWeb.Router.Helpers
-      import XparWeb.Gettext
-    end
-  end
-
-  def view do
-    quote do
-      use Phoenix.View, root: "lib/xpar_web/templates",
-                        namespace: XparWeb
-
-      # Import convenience functions from controllers
-      import Phoenix.Controller, only: [get_flash: 2, view_module: 1]
-
-      # Use all HTML functionality (forms, tags, etc)
-      use Phoenix.HTML
-
-      import XparWeb.Router.Helpers
-      import XparWeb.ErrorHelpers
-      import XparWeb.Gettext
     end
   end
 
@@ -51,12 +33,6 @@ defmodule XparWeb do
     end
   end
 
-  def channel do
-    quote do
-      use Phoenix.Channel
-      import XparWeb.Gettext
-    end
-  end
 
   @doc """
   When used, dispatch to the appropriate controller/view/etc.
